@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="FlaxGo — a simple way to search the web.">
+  <meta name="description" content="FlaxGo - a simple way to search deep into the web.">
   <meta name="theme-color" content="#0d0817">
   <title>FlaxGo | Flaxware</title>
 
@@ -287,11 +287,17 @@
           <button class="engine" type="button" data-engine="duckduckgo" aria-pressed="true">
             DuckDuckGo
           </button>
-          <button class="engine" type="button" data-engine="google" aria-pressed="false">
-            Google
+          <button class="engine" type="button" data-engine="startpage" aria-pressed="false">
+            Google (Startpage)
           </button>
           <button class="engine" type="button" data-engine="wikipedia" aria-pressed="false">
             Wikipedia
+          </button>
+          <button class="engine" type="button" data-engine="reddit" aria-pressed="false">
+            Reddit
+          <button class="engine" type="button" data-engine="youtube" aria-pressed="false">
+            Youtube
+          </button>
           </button>
         </div>
 
@@ -331,8 +337,10 @@
 
     const searchUrls = {
       duckduckgo: "https://duckduckgo.com/?q=",
-      google: "https://www.google.com/search?q=",
-      wikipedia: "https://en.wikipedia.org/w/index.php?search="
+      startpage: "https://www.startpage.com/sp/search?q=",
+      wikipedia: "https://en.wikipedia.org/w/index.php?search=",
+      reddit: "https://www.reddit.com/search/?q=",
+      youtube: "https://www.youtube.com/results?search_query=",
     };
 
     window.location.assign(
