@@ -296,44 +296,54 @@
   </main>
 
   <script>
-    const form = document.querySelector("#search-form");
-    const input = document.querySelector("#query");
-    const engineButtons = [...document.querySelectorAll(".engine")];
+  const form = document.querySelector("#search-form");
+  const input = document.querySelector("#query");
+  const engineButtons = [...document.querySelectorAll(".engine")];
 
-    let selectedEngine = "duckduckgo";
+  let selectedEngine = "duckduckgo";
 
-    engineButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        selectedEngine = button.dataset.engine;
+  engineButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedEngine = button.dataset.engine;
 
-        engineButtons.forEach((item) => {
-          item.setAttribute("aria-pressed", String(item === button));
-        });
-
-        input.focus();
+      engineButtons.forEach((item) => {
+        item.setAttribute("aria-pressed", String(item === button));
       });
+
+      input.focus();
     });
+  });
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-      const query = input.value.trim();
+    const query = input.value.trim();
 
-      if (!query) {
-        input.focus();
-        return;
-      }
+    if (!query) {
+      input.focus();
+      return;
+    }
 
-      const searchUrls = {
-        duckduckgo: "https://duckduckgo.com/?q=",
-        google: "https://www.google.com/search?q=",
-        wikipedia: "https://en.wikipedia.org/w/index.php?search="
-      };
+    const searchUrls = {
+      duckduckgo: "https://duckduckgo.com/?q=",
+      google: "https://www.google.com/search?q=",
+      wikipedia: "https://en.wikipedia.org/w/index.php?search="
+    };
 
-      window.location.assign(
-        searchUrls[selectedEngine] + encodeURIComponent(query)
-      );
-    });
-  </script>
+    window.location.assign(
+      searchUrls[selectedEngine] + encodeURIComponent(query)
+    );
+  });
+
+  // Read a query passed in the page URL by Firefox's address bar.
+  const params = new URLSearchParams(window.location.search);
+  const addressBarQuery = params.get("q");
+
+  if (addressBarQuery) {
+    input.value = addressBarQuery;
+    form.requestSubmit();
+  }
+</script>
+
 </body>
 </html>
