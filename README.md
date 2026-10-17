@@ -1,1 +1,1 @@
-# flaxgo.github.io
+# FlaxGo
