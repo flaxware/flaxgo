@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta
-    name="description"
-    content="FlaxGo by Flaxware — a simple way to search the web."
-  >
+  <meta name="description" content="FlaxGo — a simple way to search the web.">
   <meta name="theme-color" content="#0d0817">
   <title>FlaxGo | Flaxware</title>
 
@@ -21,14 +18,11 @@
     :root {
       color-scheme: dark;
       --background: #0d0817;
-      --background-light: #160d26;
-      --card: rgba(33, 18, 55, 0.72);
       --purple: #9b5cff;
       --purple-light: #c49aff;
       --text: #f7f1ff;
       --muted: #b9a9c9;
       --border: rgba(196, 154, 255, 0.2);
-      --max-width: 1160px;
     }
 
     * {
@@ -37,156 +31,60 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       min-height: 100vh;
-      overflow-x: hidden;
+      overflow: hidden;
       background:
-        radial-gradient(circle at 80% 10%, rgba(124, 53, 255, 0.14), transparent 30rem),
+        radial-gradient(circle at 80% 15%, rgba(124, 53, 255, 0.14), transparent 30rem),
         var(--background);
       color: var(--text);
       font-family: "Space Grotesk", sans-serif;
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible {
-      outline: 3px solid var(--purple-light);
-      outline-offset: 4px;
-    }
-
-    .container {
-      width: min(var(--max-width), 100%);
-      margin: 0 auto;
-      padding-inline: 28px;
     }
 
     .site-header {
       position: absolute;
-      z-index: 2;
       top: 0;
+      left: 0;
       width: 100%;
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     }
 
     .navbar {
       display: flex;
+      width: min(1160px, 100%);
       min-height: 82px;
       align-items: center;
-      justify-content: space-between;
+      margin: 0 auto;
+      padding: 0 28px;
     }
 
+    /* Simple wordmark, matching the original example */
     .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.06em;
-      line-height: 1;
-    }
-
-    .logo-mark {
-      display: grid;
-      width: 32px;
-      height: 32px;
-      place-items: center;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: rgba(155, 92, 255, 0.12);
-      color: var(--purple-light);
-      font-size: 1.1rem;
-    }
-
-    .logo-name span,
-    h1 span,
-    h2 span {
-      color: var(--purple-light);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .nav-links > a:not(.nav-button) {
       color: var(--muted);
-      font-size: 0.9rem;
-      transition: color 0.2s ease;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -0.06em;
+      text-decoration: none;
     }
 
-    .nav-links > a:not(.nav-button):hover {
-      color: var(--text);
-    }
-
-    .nav-button {
-      padding: 9px 17px;
-      border: 1px solid var(--border);
-      border-radius: 7px;
+    .logo span {
       color: var(--purple-light);
-      font-size: 0.85rem;
-      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
-    .nav-button:hover {
-      border-color: var(--purple);
-      background: rgba(155, 92, 255, 0.15);
+    main {
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
+      padding: 100px 20px 40px;
     }
 
-    .hero {
-      position: relative;
-      display: flex;
-      min-height: 760px;
-      align-items: center;
-      overflow: hidden;
-      padding-block: 120px 90px;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-glow {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(8px);
-      pointer-events: none;
-    }
-
-    .glow-one {
-      top: 18%;
-      right: 8%;
-      width: 420px;
-      height: 420px;
-      background: rgba(126, 45, 255, 0.22);
-    }
-
-    .glow-two {
-      right: 30%;
-      bottom: 4%;
-      width: 230px;
-      height: 230px;
-      background: rgba(226, 77, 255, 0.12);
+    .search-content {
+      width: min(720px, 100%);
+      text-align: center;
     }
 
     .eyebrow {
-      margin-bottom: 22px;
+      margin-bottom: 12px;
       color: var(--purple-light);
       font-family: "DM Mono", monospace;
       font-size: 0.72rem;
@@ -194,28 +92,24 @@
     }
 
     h1 {
-      max-width: 850px;
-      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      margin-bottom: 34px;
+      font-size: clamp(3.5rem, 10vw, 6.5rem);
       letter-spacing: -0.09em;
-      line-height: 0.98;
+      line-height: 1;
     }
 
-    .hero-text {
-      max-width: 500px;
-      margin-top: 28px;
-      color: var(--muted);
-      font-size: 1.1rem;
+    h1 span {
+      color: var(--purple-light);
     }
 
     .search-panel {
-      max-width: 760px;
-      margin-top: 38px;
       padding: 12px;
       border: 1px solid var(--border);
       border-radius: 14px;
-      background: var(--card);
+      background: rgba(33, 18, 55, 0.72);
       box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(12px);
+      text-align: left;
     }
 
     .search-form {
@@ -249,6 +143,7 @@
       outline: 0;
       background: transparent;
       color: var(--text);
+      font: inherit;
     }
 
     .search-form input::placeholder {
@@ -261,9 +156,9 @@
       border: 0;
       border-radius: 7px;
       background: linear-gradient(110deg, #8d4cff, #c16dff);
-      box-shadow: 0 8px 20px rgba(139, 76, 255, 0.2);
       color: white;
       cursor: pointer;
+      font: inherit;
       font-weight: 600;
       transition: transform 0.2s ease, filter 0.2s ease;
     }
@@ -294,13 +189,14 @@
       background: transparent;
       color: var(--muted);
       cursor: pointer;
+      font: inherit;
       font-size: 0.82rem;
       transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
     .engine:hover {
-      color: var(--text);
       border-color: var(--purple);
+      color: var(--text);
     }
 
     .engine[aria-pressed="true"] {
@@ -315,252 +211,17 @@
       font-size: 0.78rem;
     }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 42px;
-      left: 50%;
-      padding: 10px;
-      transform: translateX(-50%);
-    }
-
-    .scroll-hint span {
-      display: block;
-      width: 11px;
-      height: 11px;
-      border-right: 1px solid var(--purple-light);
-      border-bottom: 1px solid var(--purple-light);
-      transform: rotate(45deg);
-    }
-
-    .section {
-      padding-block: 120px;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
-      padding-top: 35px;
-      border-top: 1px solid var(--border);
-    }
-
-    h2 {
-      font-size: clamp(2.4rem, 5vw, 4.7rem);
-      letter-spacing: -0.08em;
-      line-height: 1;
-    }
-
-    .about-copy {
-      max-width: 500px;
-      color: var(--muted);
-      font-size: 1.08rem;
-    }
-
-    .about-copy p + p {
-      margin-top: 22px;
-    }
-
-    .projects-section {
-      background: rgba(25, 13, 41, 0.7);
-    }
-
-    .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 40px;
-      margin-bottom: 55px;
-    }
-
-    .section-description {
-      max-width: 320px;
-      color: var(--muted);
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .project-card {
-      display: flex;
-      min-height: 330px;
-      flex-direction: column;
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--card);
-      transition: border-color 0.25s ease, transform 0.25s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--purple);
-    }
-
-    .project-card.featured {
-      background:
-        linear-gradient(145deg, rgba(120, 53, 220, 0.28), transparent),
-        var(--card);
-    }
-
-    .project-icon {
-      margin-bottom: 32px;
-      color: var(--purple-light);
-      font-size: 2rem;
-    }
-
-    .project-number {
-      color: var(--purple-light);
-      font-family: "DM Mono", monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-    }
-
-    .project-card h3 {
-      margin: 12px 0;
-      font-size: 1.45rem;
-    }
-
-    .project-card > p:not(.project-number) {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .project-card > a {
-      margin-top: auto;
-      padding-top: 28px;
-      color: var(--purple-light);
-      font-size: 0.9rem;
-    }
-
-    .contact-section {
-      padding-block: 140px;
-      background:
-        linear-gradient(rgba(41, 17, 74, 0.88), rgba(41, 17, 74, 0.88)),
-        radial-gradient(circle at 50% 40%, #813dce, transparent 60%);
-      text-align: center;
-    }
-
-    .contact-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .contact-section h2 {
-      margin-bottom: 24px;
-    }
-
-    .contact-text {
-      max-width: 440px;
-      margin-bottom: 30px;
-      color: var(--muted);
-    }
-
-    .button {
-      display: inline-block;
-      padding: 13px 21px;
-      border-radius: 7px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
-    }
-
-    .button-primary {
-      background: linear-gradient(110deg, #8d4cff, #c16dff);
-      box-shadow: 0 12px 28px rgba(139, 76, 255, 0.25);
-      color: white;
-    }
-
-    .site-footer {
-      padding-block: 25px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    .footer-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .footer-content > a:last-child {
-      color: var(--purple-light);
-    }
-
-    @media (max-width: 760px) {
-      .navbar {
-        min-height: 72px;
-      }
-
-      .nav-links {
-        gap: 14px;
-      }
-
-      .nav-links > a:not(.nav-button) {
-        display: none;
-      }
-
-      .hero {
-        min-height: 700px;
-      }
-
-      .hero-text {
-        font-size: 1rem;
-      }
-
-      .section {
-        padding-block: 90px;
-      }
-
-      .about-grid,
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .about-grid {
-        gap: 35px;
-      }
-
-      .section-heading {
-        align-items: start;
-        flex-direction: column;
-        gap: 22px;
-      }
-
-      .project-card {
-        min-height: 290px;
-      }
-
-      .contact-section {
-        padding-block: 105px;
-      }
-
-      .footer-content {
-        align-items: start;
-        flex-direction: column;
-      }
-
-      .glow-one {
-        right: -200px;
-      }
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--purple-light);
+      outline-offset: 4px;
     }
 
     @media (max-width: 480px) {
-      .container {
+      .navbar {
+        min-height: 72px;
         padding-inline: 20px;
-      }
-
-      .logo {
-        font-size: 1.15rem;
       }
 
       .search-form {
@@ -572,17 +233,8 @@
         padding-inline: 13px;
       }
 
-      .engine-row {
-        gap: 7px;
-      }
-
       .engine-label {
         flex-basis: 100%;
-      }
-
-      .contact-email {
-        max-width: 100%;
-        overflow-wrap: anywhere;
       }
     }
 
@@ -590,10 +242,7 @@
       *,
       *::before,
       *::after {
-        scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
       }
     }
   </style>
@@ -601,85 +250,50 @@
 
 <body>
   <header class="site-header">
-    <nav class="navbar container" aria-label="Main navigation">
-      <a class="logo" href="#home" aria-label="Flaxware home">
-        <span class="logo-mark" aria-hidden="true">✦</span>
-        <span class="logo-name">flaxware<span>.</span></span>
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="logo" href="#" aria-label="FlaxGo">
+        flaxware<span>.</span>
       </a>
-
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <a
-          class="nav-button"
-          href="https://github.com/flaxware/flaxplaza"
-          target="_blank"
-          rel="noopener noreferrer"
-        >GitHub ↗</a>
-      </div>
     </nav>
   </header>
 
   <main>
-    <section id="home" class="hero">
-      <div class="hero-glow glow-one" aria-hidden="true"></div>
-      <div class="hero-glow glow-two" aria-hidden="true"></div>
+    <section class="search-content" aria-labelledby="page-title">
+      <p class="eyebrow">SEARCH ENGINE BY FLAXWARE</p>
+      <h1 id="page-title">Flax<span>Go</span></h1>
 
-      <div class="container hero-content">
-        <p class="eyebrow">A FLAXWARE PROJECT</p>
-        <h1>Search simply.<br><span>Think differently.</span></h1>
-        <p class="hero-text">
-          FlaxGo gives you a clean starting point for searching the web.
-          Choose a search engine, enter a query, and go.
-        </p>
+      <div class="search-panel">
+        <form id="search-form" class="search-form" role="search">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input
+            id="query"
+            type="search"
+            name="q"
+            placeholder="Search the web…"
+            aria-label="Search the web"
+            autocomplete="off"
+            autofocus
+          >
+          <button class="search-button" type="submit">Search</button>
+        </form>
 
-        <div class="search-panel">
-          <form id="search-form" class="search-form" role="search">
-            <span class="search-icon" aria-hidden="true">⌕</span>
-            <input
-              id="query"
-              type="search"
-              name="q"
-              placeholder="What are you looking for?"
-              aria-label="Search the web"
-              autocomplete="off"
-              autofocus
-            >
-            <button class="search-button" type="submit">Search</button>
-          </form>
-
-          <div class="engine-row" role="group" aria-label="Choose a search engine">
-            <span class="engine-label">Search with</span>
-            <button class="engine" type="button" data-engine="duckduckgo" aria-pressed="true">
-              DuckDuckGo
-            </button>
-            <button class="engine" type="button" data-engine="google" aria-pressed="false">
-              Google
-            </button>
-            <button class="engine" type="button" data-engine="wikipedia" aria-pressed="false">
-              Wikipedia
-            </button>
-          </div>
-
-          <p class="search-hint">Choose an engine, type a query, and press Enter.</p>
+        <div class="engine-row" role="group" aria-label="Choose a search engine">
+          <span class="engine-label">Search with</span>
+          <button class="engine" type="button" data-engine="duckduckgo" aria-pressed="true">
+            DuckDuckGo
+          </button>
+          <button class="engine" type="button" data-engine="google" aria-pressed="false">
+            Google
+          </button>
+          <button class="engine" type="button" data-engine="wikipedia" aria-pressed="false">
+            Wikipedia
+          </button>
         </div>
-      </div>
 
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <a class="logo" href="#home" aria-label="Flaxware home">
-        <span class="logo-mark" aria-hidden="true">✦</span>
-        <span class="logo-name">flaxware<span>.</span></span>
-      </a>
-      <p>© 2026 Flaxware. Built with curiosity.</p>
-      <a
-        href="https://github.com/flaxware/flaxplaza"
-        target="_blank"
-        rel="noopener noreferrer"
-      >GitHub ↗</a>
-    </div>
-  </footer>
+        <p class="search-hint">Choose an engine, type a query, and press Enter.</p>
+      </div>
+    </section>
+  </main>
 
   <script>
     const form = document.querySelector("#search-form");
@@ -723,4 +337,3 @@
   </script>
 </body>
 </html>
-
