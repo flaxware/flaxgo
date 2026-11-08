@@ -25,7 +25,7 @@
       --line: rgba(178, 106, 255, .34);
       --green: #39ff14;
       --green-ink: #071504;
-      --purple: #b66cff;
+      --purple: #c84dff;
       --focus: #ffd166;
       --content: 1160px;
       --mono: "DM Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
@@ -51,7 +51,6 @@
       box-shadow: 0 6px 32px rgba(0,0,0,.4), 0 0 28px rgba(124,48,180,.08);
     }
     .navbar { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    /* Keep the same Flaxware wordmark, logo, and green punctuation as the main site. */
     .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-size: 1.18rem; font-weight: 750; letter-spacing: -.04em; }
     .brand img { width: 34px; height: 34px; object-fit: contain; }
     .brand-name span { color: var(--green); text-shadow: 0 0 14px rgba(57,255,20,.36); }
@@ -64,12 +63,8 @@
     .onion-link:hover { transform: translateY(-1px); background: rgba(57,255,20,.15); box-shadow: 0 0 22px rgba(57,255,20,.17); }
     main { min-height: calc(100vh - 74px); display: grid; place-items: center; padding: 40px 0 72px; }
     .search-home { width: min(760px, calc(100% - 48px)); margin: auto; text-align: center; transform: translateY(-4vh); }
-    h1 {
-      margin: 0 0 30px; color: var(--text); font-size: clamp(3.2rem, 9vw, 5.8rem); line-height: 1;
-      font-weight: 700; letter-spacing: -.075em;
-    }
-    /* Echo the main site's “flaxible” treatment: white Flax, unmistakably green Go. */
-    h1 .flax { color: var(--text); }
+    h1 { margin: 0 0 30px; font-size: clamp(3.2rem, 9vw, 5.8rem); line-height: 1; font-weight: 700; letter-spacing: -.075em; }
+    h1 .flax { color: #f5eaff; text-shadow: 0 0 7px rgba(230,160,255,.95), 0 0 18px rgba(205,74,255,.95), 0 0 42px rgba(188,49,255,.78), 0 0 76px rgba(152,36,255,.48); }
     h1 .go { color: var(--green); text-shadow: 0 0 18px rgba(57,255,20,.3), 0 0 50px rgba(57,255,20,.16); }
     .search-form {
       display: flex; width: 100%; gap: 8px; padding: 8px; border: 1px solid rgba(182,108,255,.55); border-radius: 14px;
@@ -78,7 +73,7 @@
     .search-input { min-width: 0; flex: 1; padding: 13px 15px; border: 0; border-radius: 8px; background: transparent; color: var(--text); font-size: 1.05rem; outline: none; }
     .search-input::placeholder { color: var(--quiet); }
     .search-input:focus-visible { outline: 2px solid var(--green); outline-offset: -2px; }
-    .engine-select { width: 148px; padding: 0 10px; border: 1px solid var(--line); border-radius: 8px; background: #160e22; color: var(--muted); font-size: .86rem; }
+    .engine-select { width: 158px; padding: 0 10px; border: 1px solid var(--line); border-radius: 8px; background: #160e22; color: var(--muted); font-size: .86rem; }
     .search-button {
       min-width: 104px; padding: 0 18px; border: 1px solid var(--green); border-radius: 8px;
       background: var(--green); color: var(--green-ink); font-weight: 750; cursor: pointer;
@@ -100,7 +95,7 @@
       .engine-select { width: 100%; min-height: 43px; }
       .search-button { min-width: 92px; min-height: 43px; padding-inline: 12px; }
     }
-    @media (max-width: 360px) { .engine-select { width: 112px; } .search-button { min-width: 80px; padding-inline: 8px; } }
+    @media (max-width: 360px) { .engine-select { width: 126px; } .search-button { min-width: 80px; padding-inline: 8px; } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
   </style>
 </head>
@@ -129,6 +124,7 @@
           <option value="wikipedia">Wikipedia</option>
           <option value="reddit">Reddit</option>
           <option value="youtube">YouTube</option>
+          <option value="flaxgo-onion">FlaxGo.onion</option>
         </select>
         <button class="search-button" type="submit">Search <span aria-hidden="true">↗</span></button>
       </form>
@@ -142,7 +138,8 @@
         startpage: "https://www.startpage.com/sp/search?query=",
         wikipedia: "https://en.wikipedia.org/w/index.php?search=",
         reddit: "https://www.reddit.com/search/?q=",
-        youtube: "https://www.youtube.com/results?search_query="
+        youtube: "https://www.youtube.com/results?search_query=",
+        "flaxgo-onion": "https://flaxware.github.io/flaxgo.onion?q="
       };
       const form = document.getElementById("searchForm");
       const query = document.getElementById("query");
