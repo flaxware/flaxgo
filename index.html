@@ -9,7 +9,7 @@
   <meta property="og:description" content="A simple, focused search experience by Flaxware.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://flaxware.github.io/flaxgo/">
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="https://flaxware.github.io/assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -141,6 +141,12 @@
         youtube: "https://www.youtube.com/results?search_query=",
         "flaxgo-onion": "https://flaxware.github.io/flaxgo.onion?q="
       };
+      const params = new URLSearchParams(window.location.search);
+      const incomingQuery = params.get("q");
+      if (incomingQuery && incomingQuery.trim()) {
+        window.location.replace(engines.duckduckgo + encodeURIComponent(incomingQuery.trim()));
+        return;
+      }
       const form = document.getElementById("searchForm");
       const query = document.getElementById("query");
       const engine = document.getElementById("engine");
@@ -165,8 +171,6 @@
           query.focus();
         }
       });
-      const incomingQuery = new URLSearchParams(window.location.search).get("q");
-      if (incomingQuery) query.value = incomingQuery;
     })();
   </script>
 </body>
