@@ -10,6 +10,9 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://flaxware.github.io/flaxgo/">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <title>FlaxGo — Search the web</title>
   <style>
     :root {
@@ -25,7 +28,7 @@
       --purple: #b66cff;
       --focus: #ffd166;
       --content: 1160px;
-      --mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      --mono: "DM Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { min-width: 320px; min-height: 100%; -webkit-text-size-adjust: 100%; }
@@ -48,6 +51,7 @@
       box-shadow: 0 6px 32px rgba(0,0,0,.4), 0 0 28px rgba(124,48,180,.08);
     }
     .navbar { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    /* Keep the same Flaxware wordmark, logo, and green punctuation as the main site. */
     .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-size: 1.18rem; font-weight: 750; letter-spacing: -.04em; }
     .brand img { width: 34px; height: 34px; object-fit: contain; }
     .brand-name span { color: var(--green); text-shadow: 0 0 14px rgba(57,255,20,.36); }
@@ -61,9 +65,12 @@
     main { min-height: calc(100vh - 74px); display: grid; place-items: center; padding: 40px 0 72px; }
     .search-home { width: min(760px, calc(100% - 48px)); margin: auto; text-align: center; transform: translateY(-4vh); }
     h1 {
-      margin: 0 0 30px; color: var(--green); font-size: clamp(3.2rem, 9vw, 5.8rem); line-height: 1;
-      font-weight: 700; letter-spacing: -.075em; text-shadow: 0 0 18px rgba(57,255,20,.3), 0 0 50px rgba(57,255,20,.13);
+      margin: 0 0 30px; color: var(--text); font-size: clamp(3.2rem, 9vw, 5.8rem); line-height: 1;
+      font-weight: 700; letter-spacing: -.075em;
     }
+    /* Echo the main site's “flaxible” treatment: white Flax, unmistakably green Go. */
+    h1 .flax { color: var(--text); }
+    h1 .go { color: var(--green); text-shadow: 0 0 18px rgba(57,255,20,.3), 0 0 50px rgba(57,255,20,.16); }
     .search-form {
       display: flex; width: 100%; gap: 8px; padding: 8px; border: 1px solid rgba(182,108,255,.55); border-radius: 14px;
       background: var(--panel); box-shadow: 0 0 0 5px rgba(182,108,255,.045), 0 18px 65px rgba(0,0,0,.4), 0 0 36px rgba(105,42,158,.18);
@@ -110,7 +117,7 @@
   </header>
   <main id="main">
     <section class="search-home" aria-label="FlaxGo web search">
-      <h1>FlaxGo</h1>
+      <h1><span class="flax">Flax</span><span class="go">Go</span></h1>
       <form class="search-form" id="searchForm" role="search">
         <label class="sr-only" for="query">Search the web</label>
         <input class="search-input" id="query" name="q" type="search" placeholder="Search the web…" autocomplete="off" required>
