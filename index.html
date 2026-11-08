@@ -1,366 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="https://flaxware.github.io/assets/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="https://flaxware.github.io/assets/logo.png" sizes="32x32">
-  <link rel="icon" type="image/svg+xml" href="https://flaxware.github.io/assets/logo.svg">
-  
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="FlaxGo - a simple way to search deep into the web.">
-  <meta name="theme-color" content="#0d0817">
-  <title>FlaxGo | Flaxware</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080610">
+  <meta name="description" content="FlaxGo — a privacy-conscious search portal from Flaxware, with quick access to web, video, community, and reference searches.">
+  <meta property="og:title" content="FlaxGo — Search with intent">
+  <meta property="og:description" content="A simple, customizable search experience by Flaxware.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://flaxware.github.io/flaxgo/">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/logo.svg">
+  <title>FlaxGo — Search with intent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      color-scheme: dark;
-      --background: #0d0817;
-      --purple: #9b5cff;
-      --purple-light: #c49aff;
-      --text: #f7f1ff;
-      --muted: #b9a9c9;
-      --border: rgba(196, 154, 255, 0.2);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      min-height: 100vh;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 80% 15%, rgba(124, 53, 255, 0.14), transparent 30rem),
-        var(--background);
-      color: var(--text);
-      font-family: "Space Grotesk", sans-serif;
-    }
-
-    .site-header {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    .navbar {
-      display: flex;
-      width: min(1160px, 100%);
-      min-height: 82px;
-      align-items: center;
-      margin: 0 auto;
-      padding: 0 28px;
-    }
-
-    /* Simple wordmark, matching the original example */
-    .logo {
-      color: var(--muted);
-      font-size: 1.2rem;
-      font-weight: 600;
-      letter-spacing: -0.06em;
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: var(--purple-light);
-    }
-
-    main {
-      display: grid;
-      min-height: 100vh;
-      place-items: center;
-      padding: 100px 20px 40px;
-    }
-
-    .search-content {
-      width: min(720px, 100%);
-      text-align: center;
-    }
-
-    .eyebrow {
-      margin-bottom: 12px;
-      color: var(--purple-light);
-      font-family: "DM Mono", monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-    }
-
-    h1 {
-      margin-bottom: 34px;
-      font-size: clamp(3.5rem, 10vw, 6.5rem);
-      letter-spacing: -0.09em;
-      line-height: 1;
-    }
-
-    h1 span {
-      color: var(--purple-light);
-    }
-
-    .search-panel {
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: rgba(33, 18, 55, 0.72);
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(12px);
-      text-align: left;
-    }
-
-    .search-form {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 7px 8px 7px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 9px;
-      background: rgba(13, 8, 23, 0.72);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .search-form:focus-within {
-      border-color: var(--purple);
-      box-shadow: 0 0 0 4px rgba(155, 92, 255, 0.14);
-    }
-
-    .search-icon {
-      flex: 0 0 auto;
-      color: var(--purple-light);
-      font-size: 1.35rem;
-      line-height: 1;
-    }
-
-    .search-form input {
-      width: 100%;
-      min-width: 0;
-      padding: 10px 0;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      color: var(--text);
-      font: inherit;
-    }
-
-    .search-form input::placeholder {
-      color: #897a9b;
-    }
-
-    .search-button {
-      flex: 0 0 auto;
-      padding: 10px 18px;
-      border: 0;
-      border-radius: 7px;
-      background: linear-gradient(110deg, #8d4cff, #c16dff);
-      color: white;
-      cursor: pointer;
-      font: inherit;
-      font-weight: 600;
-      transition: transform 0.2s ease, filter 0.2s ease;
-    }
-
-    .search-button:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.1);
-    }
-
-    .engine-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 9px;
-      margin-top: 14px;
-    }
-
-    .engine-label {
-      margin-right: 4px;
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    .engine {
-      padding: 6px 12px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      font: inherit;
-      font-size: 0.82rem;
-      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .engine:hover {
-      border-color: var(--purple);
-      color: var(--text);
-    }
-
-    .engine[aria-pressed="true"] {
-      border-color: rgba(196, 154, 255, 0.55);
-      background: rgba(155, 92, 255, 0.17);
-      color: var(--purple-light);
-    }
-
-    .search-hint {
-      margin: 12px 4px 0;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
-
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible {
-      outline: 3px solid var(--purple-light);
-      outline-offset: 4px;
-    }
-
-    @media (max-width: 480px) {
-      .navbar {
-        min-height: 72px;
-        padding-inline: 20px;
-      }
-
-      .search-form {
-        gap: 8px;
-        padding-left: 11px;
-      }
-
-      .search-button {
-        padding-inline: 13px;
-      }
-
-      .engine-label {
-        flex-basis: 100%;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        transition-duration: 0.01ms !important;
-      }
-    }
+    :root{color-scheme:dark;--bg:#080610;--panel:rgba(19,12,35,.78);--panel2:rgba(43,19,74,.56);--text:#fbf8ff;--muted:#ccbde0;--quiet:#a28db9;--line:rgba(178,106,255,.34);--green:#39ff14;--purple:#b26aff;--pink:#ed7dff;--content:1160px}
+    *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px;-webkit-text-size-adjust:100%}body{margin:0;min-width:320px;overflow-x:hidden;color:var(--text);background:radial-gradient(ellipse at 80% 0%,rgba(108,43,173,.22),transparent 42%),radial-gradient(ellipse at 10% 70%,rgba(37,18,67,.2),transparent 40%),var(--bg);font:16px/1.6 "Space Grotesk",system-ui,sans-serif}a{color:inherit;text-decoration:none}button,input,select{font:inherit}.container{width:min(var(--content),calc(100% - 48px));margin-inline:auto}.skip-link{position:absolute;left:-9999px;top:8px;z-index:99;padding:10px 14px;background:#fff;color:#111}.skip-link:focus{left:10px}.site-header{position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line);background:rgba(8,6,16,.88);backdrop-filter:blur(20px) saturate(170%);box-shadow:0 6px 32px rgba(0,0,0,.4)}.navbar{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:10px;font-size:1.28rem;font-weight:750;letter-spacing:-.06em;white-space:nowrap}.brand img{width:34px;height:34px;object-fit:contain}.brand-name span{color:var(--pink)}.nav-tools,.nav-links{display:flex;align-items:center;gap:22px}.nav-tools{gap:26px}.nav-links a{color:var(--muted);font-size:.88rem}.nav-links a:hover,.footer-links a:hover{color:var(--text)}.login-button{padding:9px 14px;border:1px solid var(--line);border-radius:8px;color:var(--pink);font-size:.85rem}.hero{position:relative;overflow:hidden;padding:clamp(54px,7vw,86px) 0 42px}.hero::after{content:"";position:absolute;z-index:-1;width:380px;height:380px;right:-110px;top:8%;border:1px solid rgba(178,106,255,.2);border-radius:50%;box-shadow:0 0 0 42px rgba(178,106,255,.025),0 0 0 84px rgba(178,106,255,.02)}.hero-content{max-width:900px;margin-inline:auto;text-align:center}.eyebrow,.section-kicker,.project-number,.tool-tag{font-family:"DM Mono",ui-monospace,monospace;text-transform:uppercase;letter-spacing:.13em}.eyebrow{display:flex;justify-content:center;align-items:center;gap:10px;margin:0 0 15px;color:var(--pink);font-size:.7rem}.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green)}h1{margin:0;font-size:clamp(3.2rem,8vw,6.6rem);line-height:.98;letter-spacing:-.085em}h1 span,.section-title span,.manifesto-box h2 span{color:var(--pink)}.hero-text{max-width:620px;margin:17px auto 0;color:var(--muted);font-size:1rem}.search-panel{max-width:800px;margin:29px auto 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:rgba(19,12,35,.88);box-shadow:0 18px 55px rgba(0,0,0,.32);text-align:left}.search-row{display:flex;align-items:center;gap:10px;padding:7px 8px 7px 14px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(8,6,16,.72)}.search-icon{color:var(--pink);font-size:1.35rem}.search-row input{min-width:0;flex:1;padding:9px 0;border:0;outline:0;background:transparent;color:var(--text);font:inherit}.search-row input::placeholder{color:#897a9b}.search-row select{max-width:140px;padding:8px;border:1px solid var(--line);border-radius:6px;background:#170f24;color:var(--muted);font-size:.8rem}.search-button{flex:0 0 auto;padding:10px 17px;border:0;border-radius:6px;background:linear-gradient(110deg,#8d4cff,#c16dff);color:white;cursor:pointer;font-weight:650;transition:transform .2s,filter .2s}.search-button:hover{transform:translateY(-1px);filter:brightness(1.1)}.engine-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:12px 4px 0}.engine-label{margin-right:3px;color:var(--muted);font-size:.76rem}.engine{padding:5px 10px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);cursor:pointer;font-size:.75rem;transition:background .2s,color .2s,border-color .2s}.engine:hover,.engine[aria-pressed="true"]{border-color:rgba(196,154,255,.65);background:rgba(155,92,255,.16);color:var(--pink)}.search-hint{margin:9px 4px 0;color:var(--quiet);font-size:.72rem}.hero-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:11px;margin-top:20px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 15px;border-radius:7px;font-size:.82rem;font-weight:650;transition:transform .2s,box-shadow .2s}.button:hover{transform:translateY(-2px)}.button-primary{background:linear-gradient(110deg,#8d4cff,#c16dff);box-shadow:0 10px 25px rgba(139,76,255,.2);color:white}.button-secondary{border:1px solid var(--line);color:var(--pink)}.signal-strip{border-block:1px solid var(--line);background:rgba(26,12,44,.44);backdrop-filter:blur(10px)}.signal-inner{display:grid;grid-template-columns:repeat(3,1fr)}.signal{display:flex;align-items:center;gap:12px;padding:15px 18px}.signal+.signal{border-left:1px solid rgba(178,106,255,.2)}.signal-icon{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--line);border-radius:9px;color:var(--pink);background:rgba(178,106,255,.08);font-size:1.05rem}.signal strong,.signal small{display:block}.signal strong{font-size:.86rem}.signal small{color:var(--quiet);font-size:.72rem}.section{padding:56px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:20px}.section-kicker{margin:0 0 7px;color:var(--pink);font-size:.66rem}.section-title{margin:0;font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.08;letter-spacing:-.065em}.section-description{max-width:430px;margin:0;color:var(--muted);font-size:.87rem}.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.project-card{min-width:0;display:flex;flex-direction:column;padding:19px;border:1px solid rgba(178,106,255,.4);border-radius:9px;background:linear-gradient(145deg,rgba(43,19,74,.38),rgba(19,12,35,.82));transition:transform .2s,border-color .2s}.project-card:hover{transform:translateY(-3px);border-color:rgba(214,154,255,.72)}.project-card.featured{background:linear-gradient(145deg,rgba(104,48,153,.42),rgba(19,12,35,.82))}.project-icon{margin-bottom:13px;color:var(--pink);font-size:1.5rem;line-height:1}.project-number{margin:0;color:var(--pink);font-size:.6rem}.project-card h3{margin:7px 0;font-size:1.05rem}.project-card p:not(.project-number){margin:0;color:var(--muted);font-size:.81rem}.project-card a{margin-top:13px;color:var(--pink);font-size:.8rem;font-weight:650}.privacy-section{padding-top:10px}.privacy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tool-card{min-width:0;padding:18px;border:1px solid rgba(178,106,255,.4);border-radius:9px;background:rgba(19,12,35,.78)}.tool-card h3{margin:0 0 6px;font-size:1rem}.tool-card p{margin:0;color:var(--muted);font-size:.82rem}.tool-tag{display:inline-block;margin-bottom:8px;color:var(--pink);font-size:.6rem}.tool-card a{display:inline-block;margin-top:10px;color:var(--pink);font-size:.78rem;font-weight:650}.manifesto{padding:4px 0 58px}.manifesto-box{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding:clamp(22px,4vw,34px);border:1px solid var(--line);border-radius:10px;background:linear-gradient(120deg,rgba(37,19,59,.82),rgba(13,9,22,.86))}.manifesto-box h2{margin:0 0 10px;font-size:clamp(1.65rem,3vw,2.25rem);line-height:1.1;letter-spacing:-.06em}.manifesto-box p{margin:0;color:var(--muted);font-size:.86rem}.checklist{display:grid;gap:8px;margin:0;padding:0;list-style:none}.checklist li{position:relative;padding-left:21px;color:var(--muted);font-size:.82rem}.checklist li::before{content:"✓";position:absolute;left:0;color:var(--green)}.site-footer{border-top:1px solid var(--line);padding:20px 0;color:var(--quiet);font-size:.78rem}.footer-inner{display:flex;justify-content:space-between;gap:20px}.footer-inner p{margin:0}.footer-links{display:flex;gap:18px}.footer-links a{color:var(--pink)}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+    @media(max-width:900px){.navbar{flex-wrap:wrap;padding-block:9px}.nav-links{display:none}.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section-head{align-items:flex-start;flex-direction:column;gap:9px}}
+    @media(max-width:600px){html{scroll-padding-top:90px}.container{width:calc(100% - 28px)}.navbar{min-height:auto;gap:8px}.brand{font-size:1.1rem}.brand img{width:29px;height:29px}.nav-tools{margin-left:auto}.hero{padding-top:48px}.hero-text{font-size:.92rem}.search-panel{padding:8px}.search-row{gap:6px;padding-left:9px}.search-row select{max-width:94px;padding:7px 4px;font-size:.7rem}.search-button{padding:9px 10px;font-size:.78rem}.engine-row{gap:6px}.engine-label{flex-basis:100%}.signal-inner{grid-template-columns:1fr}.signal{padding:10px 8px}.signal+.signal{border-left:0;border-top:1px solid rgba(178,106,255,.2)}.section{padding:43px 0}.project-grid,.privacy-grid,.manifesto-box{grid-template-columns:1fr}.footer-inner{flex-direction:column;gap:8px}}
+    @media(max-width:360px){.login-button{padding-inline:7px;font-size:.72rem}.search-row select{max-width:78px}.search-button{padding-inline:8px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
   </style>
 </head>
-
-</head>
 <body>
-
-  <header class="site-header">
-    <nav class="navbar container">
-
-      <a class="logo" href="https://flaxware.github.io/" aria-label="Flaxware home">
-        <img src="assets/logo.svg" alt="💎" style="height: 1em; width: auto; vertical-align: middle;">
-        <span>flaxware<span>.</span></span>
-        </a>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="search-content" aria-labelledby="page-title">
-      <p class="eyebrow">SEARCH ENGINE BY FLAXWARE</p>
-      <h1 id="page-title">Flax<span>Go</span></h1>
-
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="navbar container" aria-label="Main navigation">
+    <a class="brand" href="#home" aria-label="FlaxGo home"><img src="assets/logo.svg" alt=""><span class="brand-name">flax<span>go</span>.</span></a>
+    <div class="nav-tools"><div class="nav-links"><a href="#projects">Projects</a><a href="#privacy">Privacy tools</a><a href="#about">About</a></div><a class="login-button" href="https://flaxware.github.io/" target="_blank" rel="noopener noreferrer">Flaxware ↗</a></div>
+  </nav></header>
+  <main id="main">
+    <section class="hero" id="home"><div class="container hero-content">
+      <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> SYS://FLAXGO · SEARCH WITH INTENT</p>
+      <h1>Search deeper. <span>Stay curious.</span></h1>
+      <p class="hero-text">A calm, customizable search experience. Choose a destination, enter a query, and get straight to what you are looking for.</p>
       <div class="search-panel">
-        <form id="search-form" class="search-form" role="search">
+        <form class="search-row" id="searchForm" role="search">
           <span class="search-icon" aria-hidden="true">⌕</span>
-          <input
-            id="query"
-            type="search"
-            name="q"
-            placeholder="Search the web…"
-            aria-label="Search the web"
-            autocomplete="off"
-            autofocus
-          >
+          <label class="sr-only" for="query">Search the web</label>
+          <input id="query" name="q" type="search" placeholder="Search the web…" autocomplete="off" autofocus>
+          <label class="sr-only" for="engine">Search destination</label>
+          <select id="engine" aria-label="Search destination">
+            <option value="duckduckgo">DuckDuckGo</option>
+            <option value="startpage">Startpage</option>
+            <option value="brave">Brave</option>
+            <option value="wikipedia">Wikipedia</option>
+            <option value="reddit">Reddit</option>
+            <option value="youtube">YouTube</option>
+            <option value="flaxgo">FlaxGo</option>
+          </select>
           <button class="search-button" type="submit">Search</button>
         </form>
-
-        <div class="engine-row" role="group" aria-label="Choose a search engine">
-          <span class="engine-label">Search with</span>
-          <button class="engine" type="button" data-engine="duckduckgo" aria-pressed="true">
-            DuckDuckGo
-          </button>
-          <button class="engine" type="button" data-engine="startpage" aria-pressed="false">
-            Google (Startpage)
-          </button>
-          <button class="engine" type="button" data-engine="wikipedia" aria-pressed="false">
-            Wikipedia
-          </button>
-          <button class="engine" type="button" data-engine="reddit" aria-pressed="false">
-            Reddit
-          <button class="engine" type="button" data-engine="youtube" aria-pressed="false">
-            Youtube
-          </button>
-          </button>
+        <div class="engine-row" role="group" aria-label="Quick search destinations"><span class="engine-label">Quick search</span>
+          <button class="engine" type="button" data-engine="duckduckgo" aria-pressed="true">DuckDuckGo</button>
+          <button class="engine" type="button" data-engine="startpage" aria-pressed="false">Startpage</button>
+          <button class="engine" type="button" data-engine="brave" aria-pressed="false">Brave</button>
+          <button class="engine" type="button" data-engine="wikipedia" aria-pressed="false">Wikipedia</button>
+          <button class="engine" type="button" data-engine="reddit" aria-pressed="false">Reddit</button>
+          <button class="engine" type="button" data-engine="youtube" aria-pressed="false">YouTube</button>
         </div>
-
-        <p class="search-hint">Choose an engine, type a query, and press Enter.</p>
+        <p class="search-hint">Searches are sent directly to your selected provider.</p>
       </div>
-    </section>
+      <div class="hero-actions"><a class="button button-primary" href="#projects">Explore Flaxware projects</a><a class="button button-secondary" href="#privacy">Privacy tools ↓</a></div>
+    </div></section>
+
+    <section class="signal-strip" aria-label="FlaxGo principles"><div class="signal-inner container">
+      <div class="signal"><span class="signal-icon" aria-hidden="true">⌕</span><div><strong>Choose your engine</strong><small>Search the way you prefer</small></div></div>
+      <div class="signal"><span class="signal-icon" aria-hidden="true">◇</span><div><strong>Simple by design</strong><small>Less noise, direct access</small></div></div>
+      <div class="signal"><span class="signal-icon" aria-hidden="true">✦</span><div><strong>Built by Flaxware</strong><small>Independent web projects</small></div></div>
+    </div></section>
+
+    <section class="section" id="projects"><div class="container">
+      <div class="section-head"><div><p class="section-kicker">// Selected work</p><h2 class="section-title">Ideas in <span>motion.</span></h2></div><p class="section-description">Explore the Flaxware ecosystem: search, software experiments, and practical online resources.</p></div>
+      <div class="project-grid">
+        <article class="project-card featured"><div class="project-icon" aria-hidden="true">⌕</div><p class="project-number">01 / SEARCH</p><h3>FlaxGo</h3><p>A calm, customizable search experience with multiple search destinations at your fingertips.</p><a href="#home">Search with FlaxGo ↑</a></article>
+        <article class="project-card"><div class="project-icon" aria-hidden="true">✦</div><p class="project-number">02 / SYSTEM</p><h3>FLAX SYSTEM</h3><p>Explore the Flaxware system project and its evolving software ideas.</p><a href="https://flaxware.github.io/flax.system" target="_blank" rel="noopener noreferrer">Explore project ↗</a></article>
+        <article class="project-card"><div class="project-icon" aria-hidden="true">⌘</div><p class="project-number">03 / TOOLBOX</p><h3>FlaxPlaza</h3><p>A curated collection of useful online tools, references, and services.</p><a href="https://flaxware.github.io/flaxplaza" target="_blank" rel="noopener noreferrer">Visit FlaxPlaza ↗</a></article>
+      </div>
+    </div></section>
+
+    <section class="section privacy-section" id="privacy"><div class="container">
+      <div class="section-head"><div><p class="section-kicker">// Privacy &amp; security desk</p><h2 class="section-title">Browse with <span>awareness.</span></h2></div><p class="section-description">A few useful destinations for checking your connection and building safer everyday habits.</p></div>
+      <div class="privacy-grid">
+        <article class="tool-card"><span class="tool-tag">Connection check</span><h3>Tor connection check</h3><p>Check whether your browser is using a Tor exit relay.</p><a href="https://check.torproject.org/" target="_blank" rel="noopener noreferrer">Check connection ↗</a></article>
+        <article class="tool-card"><span class="tool-tag">Domain research</span><h3>WHOIS lookup</h3><p>Search public domain registration details through who.is.</p><a href="https://who.is/" target="_blank" rel="noopener noreferrer">Open WHO.IS ↗</a></article>
+        <article class="tool-card"><span class="tool-tag">File privacy</span><h3>Metadata viewer</h3><p>Inspect metadata in your own files before sharing them online.</p><a href="https://metadataview.com/" target="_blank" rel="noopener noreferrer">Open metadata tool ↗</a></article>
+        <article class="tool-card"><span class="tool-tag">Account security</span><h3>Password manager</h3><p>Use a password manager and unique credentials for important accounts.</p><a href="https://proton.me/pass" target="_blank" rel="noopener noreferrer">Explore Proton Pass ↗</a></article>
+      </div>
+    </div></section>
+
+    <section class="manifesto" id="about"><div class="container manifesto-box"><div><p class="section-kicker">// About FlaxGo</p><h2>Make the useful thing.<br><span>Make it thoughtfully.</span></h2><p>FlaxGo is a Flaxware search portal. Your query is passed to the search provider you choose; each provider has its own privacy policy and terms. Choose the service that fits your needs.</p></div><ul class="checklist"><li>Use strong, unique passwords.</li><li>Minimize unnecessary personal information.</li><li>Check the destination before submitting a search.</li><li>Use privacy tools with informed expectations.</li></ul></div></section>
   </main>
-
+  <footer class="site-footer"><div class="container footer-inner"><p>© 2026 Flaxware · Built with curiosity.</p><div class="footer-links"><a href="https://github.com/flaxware/flaxgo" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://flaxware.github.io/" target="_blank" rel="noopener noreferrer">Flaxware portal ↗</a></div></div></footer>
   <script>
-  const form = document.querySelector("#search-form");
-  const input = document.querySelector("#query");
-  const engineButtons = [...document.querySelectorAll(".engine")];
+    (() => {
+      const engines = {
+        duckduckgo: "https://duckduckgo.com/?q=",
+        startpage: "https://www.startpage.com/sp/search?query=",
+        brave: "https://search.brave.com/search?q=",
+        wikipedia: "https://en.wikipedia.org/w/index.php?search=",
+        reddit: "https://www.reddit.com/search/?q=",
+        youtube: "https://www.youtube.com/results?search_query=",
+        flaxgo: "https://flaxware.github.io/flaxgo?q="
+      };
+      const form = document.getElementById("searchForm");
+      const query = document.getElementById("query");
+      const engine = document.getElementById("engine");
+      const engineButtons = [...document.querySelectorAll(".engine")];
 
-  let selectedEngine = "duckduckgo";
+      try {
+        const saved = localStorage.getItem("flaxgo-engine");
+        if (saved && engines[saved]) engine.value = saved;
+      } catch (_) { /* Search still works if storage is unavailable. */ }
 
-  engineButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      selectedEngine = button.dataset.engine;
+      function selectEngine(name) {
+        if (!engines[name]) return;
+        engine.value = name;
+        engineButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.engine === name));
+        });
+        try { localStorage.setItem("flaxgo-engine", name); } catch (_) { /* Preference is optional. */ }
+      }
 
-      engineButtons.forEach((item) => {
-        item.setAttribute("aria-pressed", String(item === button));
+      engine.addEventListener("change", () => selectEngine(engine.value));
+      engineButtons.forEach((button) => button.addEventListener("click", () => {
+        selectEngine(button.dataset.engine);
+        query.focus();
+      }));
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const term = query.value.trim();
+        if (!term) { query.focus(); return; }
+        const base = engines[engine.value];
+        if (base) window.location.assign(base + encodeURIComponent(term));
       });
 
-      input.focus();
-    });
-  });
+      document.addEventListener("keydown", (event) => {
+        const target = event.target;
+        const typing = target instanceof HTMLElement && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName));
+        if (event.key === "/" && !typing) { event.preventDefault(); query.focus(); }
+      });
 
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const query = input.value.trim();
-
-    if (!query) {
-      input.focus();
-      return;
-    }
-
-    const searchUrls = {
-      duckduckgo: "https://duckduckgo.com/?q=",
-      startpage: "https://www.startpage.com/sp/search?q=",
-      wikipedia: "https://en.wikipedia.org/w/index.php?search=",
-      reddit: "https://www.reddit.com/search/?q=",
-      youtube: "https://www.youtube.com/results?search_query=",
-    };
-
-    window.location.assign(
-      searchUrls[selectedEngine] + encodeURIComponent(query)
-    );
-  });
-
-  // Read a query passed in the page URL by Firefox's address bar.
-  const params = new URLSearchParams(window.location.search);
-  const addressBarQuery = params.get("q");
-
-  if (addressBarQuery) {
-    input.value = addressBarQuery;
-    form.requestSubmit();
-  }
-</script>
-
+      const params = new URLSearchParams(window.location.search);
+      const incomingQuery = params.get("q");
+      if (incomingQuery) {
+        query.value = incomingQuery;
+        form.requestSubmit();
+      }
+    })();
+  </script>
 </body>
 </html>
